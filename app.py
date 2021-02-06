@@ -81,6 +81,7 @@ def upload_file():
 
 @app.route('/apply/<field_id>', methods=['GET', 'POST'])
 def apply(field_id):
+    logging.log(field_id)
     return render_template('applyJob.html', jobid=field_id)
 
 
@@ -100,6 +101,8 @@ def dashboard():
                                    profile=EditProfileUserForm,
                                    job=jobSearch())
         else:
+
+            logging.log([i.to_dict() for i in getJobs()])
 
             return render_template('dashboard_admin.html',
                                    type=request.cookies.get('type'),
