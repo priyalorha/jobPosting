@@ -23,9 +23,8 @@ def savejobPosting(title: str,
                expiryDate=expiryDate).save()
 
 
-def appendApplicants_jobPosting(id: str, applicant_email: str):
-    id = id
-    jobPost = jobPosting.objects(sequence=id)[0]
+def appendApplicants_jobPosting(sequence: str, applicant_email: str):
+    jobPost = jobPosting.objects(sequence=sequence)[0]
     if applicant_email not in jobPost['whoApplied']:
         jobPost['whoApplied'].append(applicant_email)
         jobPost.save()
