@@ -33,7 +33,7 @@
 
     <table>
       <tr>
-        <td>_id</td>
+
         <td>title</td>
         <td>description</td>
         <td>location</td>
@@ -42,14 +42,17 @@
         <td>Individual List</td>
       </tr>
       {%for fields in jobList %}
-      <td>fields._id</td>
-      <td>fields.title</td>
-      <td>fields.description</td>
-      <td>fields.location</td>
-      <td>fields.expiryDate</td>
-      <td>fields.whoApplied</td>
-      <td><a href=/job/{{field._id}}>Click ME!</a></td>
-      {%end for%}
+      {{fields}}
+      <tr>
+
+      <td>{{fields.title}}</td>
+      <td>{{fields.description}}</td>
+      <td>{{fields.location}}</td>
+      <td>{{fields.expiryDate}}</td>
+      <td>{{fields.whoApplied}}</td>
+      <td><a href=/job/{{fields.id}}>Click ME!</a></td>
+        </tr>
+      {%endfor%}
     </table>
 
 

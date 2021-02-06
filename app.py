@@ -21,6 +21,13 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+@app.route('/job/id', methods=['GET', 'POST'])
+def job(id):
+    if request:
+        return render_template('jobList_individual.html',
+                               job=getJobs(id))
+    return "OK"
+
 @app.route('/setJobPosting', methods=['GET', 'POST'])
 def setJobPosting():
     if request.method == 'POST':
@@ -153,11 +160,6 @@ def jobSearchAPi():
             return render_template('jobList.html', job=jobs)
 
     return render_template('jobList.html', message="could not find job :(")
-
-
-@app.route('/jobListing/id', methods=['GET', 'POST'])
-def jobListing(id):
-    return "<div> getJobs(id)</div>"
 
 
 @app.route('/logout', methods=['GET', 'POST'])
