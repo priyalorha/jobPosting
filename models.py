@@ -34,7 +34,7 @@ class Users(Document):
 
 
 class jobPosting(Document):
-    id = StringField()
+    sequence = StringField()
     title = StringField()
     description = StringField()
     location = PointField()
@@ -49,7 +49,7 @@ class jobPosting(Document):
 
     def to_dict(self):
         return {
-            'id': self.id,
+            'sequence': self.id,
             'title': self.title,
             'description': self.description,
             'locality': self.location['coordinates'],
