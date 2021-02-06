@@ -33,3 +33,14 @@ def appendApplicants_jobPosting(id: str, applicant_email: str):
 def editProfile(id: str, **kwargs: dict):
     user = Users().objects(id=id).update(**kwargs)
 
+
+def getJobs(id: str = ''):
+    job = []
+    if id:
+        job = jobPosting.objects(id=int(id))
+        if job:
+            job = job[0]
+    else:
+        job = jobPosting.objects()
+
+    return job

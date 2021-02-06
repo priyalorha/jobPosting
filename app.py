@@ -8,7 +8,7 @@ from emails import sendEmails
 from cvUploader import upload_cv
 from models import Users, jobPosting
 from templates.form_models import LoginForm, SignUpForm, jobSearch, EditProfileUser, jobPostingForm
-from utils import random_with_N_digits, appendApplicants_jobPosting, savejobPosting
+from utils import random_with_N_digits, appendApplicants_jobPosting, savejobPosting, getJobs
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'you-will-never-guess'
@@ -81,16 +81,19 @@ def dashboard():
             EditProfileUserForm.name.data = user[0].name
             EditProfileUserForm.mobile.data = user[0].mobile
             type = user[0].admin
-        if type == False or request.cookies['type']=='user':
+        if type == False or request.cookies['type'] == 'user':
             return render_template('dashboard.html',
                                    type=user,
                                    profile=EditProfileUserForm,
                                    job=jobSearch())
         else:
+
             return render_template('dashboard_admin.html',
                                    type=request.cookies.get('type'),
                                    profile=EditProfileUserForm,
-                                   job=jobPostingForm()
+                                   job=jobPostingForm(),
+                                   jobList=getJobs()
+
                                    )
 
     return render_template('LoginSignUp.html')
@@ -152,9 +155,9 @@ def jobSearchAPi():
     return render_template('jobList.html', message="could not find job :(")
 
 
-@app.route('/jobListing', methods=['GET', 'POST'])
-def jobListing():
-    return "<h1>job listing</h1>"
+@app.route('/jobListing/id', methods=['GET', 'POST'])
+def jobListing(id):
+    return "<div> getJobs(id)</div>"
 
 
 @app.route('/logout', methods=['GET', 'POST'])

@@ -29,7 +29,31 @@
   </form>
 </div>
 <div class="ViewJobPostingStatus">
-  <form action="/jobStatus" method="post">{{priyaaa}}</form>
+  <form action="/jobListing" method="post">
+
+    <table>
+      <tr>
+        <td>_id</td>
+        <td>title</td>
+        <td>description</td>
+        <td>location</td>
+        <td>expiryDate</td>
+        <td>whoApplied</td>
+        <td>Individual List</td>
+      </tr>
+      {%for fields in jobList %}
+      <td>fields._id</td>
+      <td>fields.title</td>
+      <td>fields.description</td>
+      <td>fields.location</td>
+      <td>fields.expiryDate</td>
+      <td>fields.whoApplied</td>
+      <td><a href=/job/{{field._id}}>Click ME!</a></td>
+      {%end for%}
+    </table>
+
+
+  </form>
 </div>
 
 <div class="editProfile">

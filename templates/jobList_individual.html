@@ -1,0 +1,12 @@
+{% extends "basic.html" %}
+{% block content %}
+{% if job %}
+<table>
+
+{%for field in job%}
+<tr><td>{{field}}}</td></tr>
+    {%endfor%}}
+{%endif%}
+    </table>
+
+{%endblock %}
