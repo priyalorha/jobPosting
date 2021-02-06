@@ -15,7 +15,7 @@ def savejobPosting(title: str,
                    location: [float],
                    expiryDate: str,
                    ):
-    jobPosting(id=jobPosting.objects.count() + 1,
+    jobPosting(id=str(jobPosting.objects.count() + 1),
                title=title,
                description=description,
                location=location,
@@ -24,7 +24,7 @@ def savejobPosting(title: str,
 
 
 def appendApplicants_jobPosting(id: str, applicant_email: str):
-    id = int(id)
+    id = id
     jobPost = jobPosting.objects(id=id)[0]
     if applicant_email not in jobPost['whoApplied']:
         jobPost['whoApplied'].append(applicant_email)
@@ -35,10 +35,10 @@ def editProfile(id: str, **kwargs: dict):
     user = Users().objects(id=id).update(**kwargs)
 
 
-def getJobs(id: int = 0):
+def getJobs(id:str):
     job = []
-    if id and id != 0:
-        job = jobPosting.objects(id=int(id))
+    if id:
+        job = jobPosting.objects(id)
         if job:
             job = job[0]
     else:

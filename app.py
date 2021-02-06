@@ -25,7 +25,6 @@ def allowed_file(filename):
 @app.route('/job/<id>', methods=['GET', 'POST'])
 def job(id):
     if id:
-        id = int(id)
         job = getJobs(id)
         return render_template('jobList_individual.html',
                                job=getJobs(id))
@@ -74,7 +73,7 @@ def upload_file():
             file.save(file.filename)
             res = upload_cv(file.filename)
             os.remove(file.filename)
-            appendApplicants_jobPosting(applicant_email=session['email'], id=int(jobid))
+            appendApplicants_jobPosting(applicant_email=session['email'], id=jobid)
 
     return dashboard()
 

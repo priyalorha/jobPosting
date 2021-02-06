@@ -34,7 +34,7 @@ class Users(Document):
 
 
 class jobPosting(Document):
-    id = IntField()
+    id = StringField()
     title = StringField()
     description = StringField()
     location = PointField()
