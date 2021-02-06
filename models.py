@@ -49,7 +49,7 @@ class jobPosting(Document):
 
     def to_dict(self):
         return {
-            'sequence': self.id,
+            'sequence': self.sequence,
             'title': self.title,
             'description': self.description,
             'locality': self.location['coordinates'],
