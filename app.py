@@ -81,7 +81,7 @@ def upload_file():
 
 @app.route('/apply/<field_id>', methods=['GET', 'POST'])
 def apply(field_id):
-    logging.log(field_id)
+    logging.info(field_id)
     return render_template('applyJob.html', jobid=field_id)
 
 
