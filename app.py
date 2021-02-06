@@ -1,3 +1,4 @@
+import logging
 import os
 from datetime import datetime
 
@@ -66,13 +67,14 @@ def upload_file():
         if 'file' not in request.files:
             return redirect(request.url)
         file = request.files['file']
-        jobid = request.form['jobid']
+        jobid = request.form.get('jobid', 0)
+        logging.info(f"login type{jobid} {jobid}")
 
         if file and allowed_file(file.filename):
             file.save(file.filename)
             res = upload_cv(file.filename)
             os.remove(file.filename)
-            appendApplicants_jobPosting(applicant_email=session['email'], id=jobid)
+            appendApplicants_jobPosting(applicant_email=session['email'], id=int(jobid))
 
     return dashboard()
 
