@@ -102,7 +102,7 @@ def dashboard():
                                    job=jobSearch())
         else:
 
-            logging.log([i.to_dict() for i in getJobs()])
+            logging.info([i.to_dict() for i in getJobs()])
 
             return render_template('dashboard_admin.html',
                                    type=request.cookies.get('type'),
