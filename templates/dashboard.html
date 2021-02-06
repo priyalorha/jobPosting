@@ -1,0 +1,71 @@
+{% extends "basic.html" %}
+{% block content %}
+<a href="/logout">Logout</a>
+{% if (not job) and (not profile)%}
+
+<form action="/dashboard" method="post">
+  <button type="submit">click here to get dashboard control!</button>
+    </form>
+  {% endif %}
+<div id="dashboard-options">
+  <select name="jobSearch" id="target">
+    <option value="jobSearch">Search Job</option>
+    <option value="editProfile">Edit Profile</option>
+  </select>
+</div>
+<div class="jobSearch">
+  <button onclick=getLocation()>Get my location</button>
+  <form action="/jobSearchAPi" method="post">
+    {% for field in job %}
+    <p>{{field.label}}<br />{{field}}</p>
+    {% endfor %}
+    <input type="hidden" id="latitude" name="latitude" value="" />
+    <input type="hidden" id="longitude" name="longitude" value="" />
+  </form>
+</div>
+<div class="editProfile">
+  <form action="/profile" method="post">
+    {% for field in profile %}
+    <p>
+      {{field.label}}<br />
+      {{field}}
+    </p>
+    {% endfor %}
+  </form>
+</div>
+
+
+
+
+
+<script>
+
+document.getElementById('target')
+                .addEventListener('click', function () {
+                    'use strict';
+                    var newFocus = document.querySelector(`div.${this.value}`);
+
+
+                    newFocus.style.display = "block";
+                    if (this.value == 'jobSearch')
+                    {
+
+                        document.querySelector(`div.jobSearch`).style.display = "block";
+                        document.querySelector(`div.editProfile`).style.display = "none";
+
+                    }
+                    else
+                    {
+                        document.querySelector(`div.editProfile`).style.display = "block";
+                        document.querySelector(`div.jobSearch`).style.display = "none";
+
+
+                    }
+                    getLocation()
+
+
+
+            });
+</script>
+
+ {% endblock %}

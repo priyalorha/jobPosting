@@ -1,0 +1,19 @@
+{% extends "basic.html" %}
+{% block content %}
+
+
+
+<div >
+<h1>Upload new File</h1>
+ <form method=post enctype=multipart/form-data action="/applyJob">
+  <input type=file name=file>
+     <input type =hidden value={{jobid}} name="jobid" >
+  <input type=submit value=Upload>
+</form>
+
+</div>
+
+{% endblock %}
+
+
+

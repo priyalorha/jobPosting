@@ -1,0 +1,29 @@
+{% extends "basic.html" %} {% block content %}
+<h1>{{title}}</h1>
+{%if title=='login' %}
+
+<div class="login">
+  <form action="/login" method="post" novalidate>
+    {% for field in form %}
+    <p>
+      {{field.label}}<br />
+      {{field}}
+    </p>
+    {% endfor %}
+  </form>
+</div>
+
+{%endif%} {%if title=='signup' %}
+
+<div class="signup">
+  <form action="/signup" method="post" enctype="multipart/form-data" novalidate>
+    {% for field in form %}
+    <p>
+      {{field.label}}<br />
+      {{field}}
+    </p>
+    {% endfor %}
+  </form>
+</div>
+
+{%endif%} {% endblock %}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JObFinder.io</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    .ViewJobPostingStatus,
+    .setJobPosting,
+    .editProfile,
+    .jobSearch,
+    #div
+    {
+        display: none;
+    }
+
+
+</style>
+
+<body>
+
+<div class="container">
+<nav>
+    <ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="dashboard">Job Listing</a></li>
+  <li><a href="/">Profile</a></li>
+        <li><h1><a href="/logout">Logout</a></h1></li>
+
+</ul>
+
+</nav>
+    <main>
+       {% block content %}{% endblock %}
+        <div id="demo">
+
+        </div>
+    </main>
+
+    <footer>
+        priya.lorha@gmail.com
+    </footer>
+</div>
+{%block script%}
+<script>
+
+
+
+    var x = document.getElementById("demo");
+
+        function getLocation() {
+            var latitude;
+            if (navigator.geolocation) {
+
+                navigator.geolocation.getCurrentPosition(
+                    (position)=>{
+
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    document.cookie ="latitude="+position.coords.latitude.toString();
+                    document.cookie ="longitude="+position.coords.longitude.toString();
+                    localStorage.setItem("latitude", position.coords.latitude.toString());
+                    localStorage.setItem("longitude", position.coords.longitude.toString())
+                    document.getElementById('latitude').value = position.coords.latitude
+                    document.getElementById('longitude').value = position.coords.longitude
+
+                }, ()=>{
+                        x.innerHTML = "Geolocation is not supported by this browser."})
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        </script>
+
+{%endblock%}
+
+
+
+</body>
+</html>

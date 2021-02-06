@@ -1,0 +1,18 @@
+{% extends "basic.html" %} {% block content %}
+<h1>Login/SignUp</h1>
+
+<form action="/loginsignup" method="post">
+  <div class="form-group">
+    <label>Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="Enter your email"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Login/Signup</button>
+</form>
+
+{% endblock %}

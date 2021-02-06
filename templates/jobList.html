@@ -1,0 +1,43 @@
+{% extends "basic.html" %}
+{% block content %}
+{% if job %}
+<table>
+    <tr>
+
+    <td>id</td>
+       <td>Title</td>
+        <td>Description</td>
+        <td>Locality</td>
+        <td>Apply</td>
+
+
+    </tr>
+<tr>
+{%for field in job%}
+    <td>{{field.id}}</td>
+ <td>
+     {{field.title}}
+ </td>
+     <td>
+     {{field.description}}
+ </td>
+     <td>
+     {{field.locality}}
+ </td>
+ <td>
+      <a href=/apply/{{field.id}}>apply</a>
+
+ </td>
+
+
+</tr>
+
+{%endfor%}</table>
+{%endif%}
+
+{% if message %}
+{{message}}
+{%endif%}
+
+
+{%endblock %}

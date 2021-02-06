@@ -1,0 +1,86 @@
+{% extends "basic.html" %}
+{% block content %}
+<a href="/logout">Logout</a>
+{% if (not job) and (not profile)%}
+
+<form action="/dashboard" method="post">
+  <button type="submit">click here to get dashboard control!</button>
+    </form>
+  {% endif %}
+
+
+<h1>{{type}}</h1>
+<div id="dashboard-options2">
+  <select name="jobSearch" id="target2">
+    <option value="setJobPosting">Create Job Posting</option>
+    <option value="ViewJobPostingStatus">ViewJobPostingStatus</option>
+    <option value="editProfile">Edit Profile</option>
+  </select>
+</div>
+
+<div class="setJobPosting">
+  <button onclick=getLocation()>Get my location</button>
+  <form action="/setJobPosting" method="post">
+    {% for field in job %}
+    <p>{{field.label}}<br />{{field}}</p>
+    {% endfor %}
+    <input type="hidden" id="latitude" name="latitude" value="" />
+    <input type="hidden" id="longitude" name="longitude" value="" />
+  </form>
+</div>
+<div class="ViewJobPostingStatus">
+  <form action="/jobStatus" method="post">{{priyaaa}}</form>
+</div>
+
+<div class="editProfile">
+  <form action="/profile" method="post">
+    {% for field in profile %}
+    <p>
+      {{field.label}}<br />
+      {{field}}
+    </p>
+    {% endfor %}
+  </form>
+</div>
+{%block script%}
+<script>
+ document.getElementById('target2')
+                .addEventListener('click', function () {
+                    'use strict';
+
+                    var newFocus = document.querySelector(`div.${this.value}`);
+
+                    newFocus.style.display = "block";
+                    if (this.value == 'setJobPosting')
+                    {
+
+                        document.querySelector(`div.setJobPosting`).style.display = "block";
+                        document.querySelector(`div.editProfile`).style.display = "none";
+                        document.querySelector(`div.ViewJobPostingStatus`).style.display = "none";
+
+
+                    }
+                    else if(this.value =='editProfile')
+                    {
+                      document.querySelector(`div.editProfile`).style.display = "block";
+                      document.querySelector(`div.setJobPosting`).style.display = "none";
+                      document.querySelector(`div.ViewJobPostingStatus`).style.display = "none";
+
+                    }
+                    else
+                    {document.querySelector(`div.editProfile`).style.display = "none";
+                      document.querySelector(`div.setJobPosting`).style.display = "none";
+                      document.querySelector(`div.ViewJobPostingStatus`).style.display = "block";
+
+
+                    }
+                    getLocation()
+
+
+
+            });
+
+</script>
+{%endblock%}
+
+ {%endblock %}

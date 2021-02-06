@@ -1,0 +1,21 @@
+{% extends "basic.html" %} {% block content %} {%if not login and not signup %}
+<div class="login">
+  <form>
+    <input type="text" placeholder="email" />
+    <button onclick="">Login</button>
+    <button>SignUp</button>
+  </form>
+</div>
+
+{%endif%} {%if login %}
+
+<div class="login">
+  <form>
+    <input text="email" />
+    <input type="" />
+    <button onclick="">Login</button>
+    <button>SignUp</button>
+  </form>
+</div>
+
+{%endif%} {%if signup%} {%endif%} {% endblock %}
