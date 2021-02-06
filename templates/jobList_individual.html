@@ -4,9 +4,11 @@
 <table>
 
 {%for field in job%}
-<tr><td>{{field}}}</td></tr>
-    {%endfor%}}
-{%endif%}
+<tr><td>{{field.value}}</td></tr>
+    {%endfor%}
+
     </table>
+
+{%endif%}
 
 {%endblock %}

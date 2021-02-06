@@ -21,12 +21,16 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/job/id', methods=['GET', 'POST'])
+@app.route('/job/<id>', methods=['GET', 'POST'])
 def job(id):
-    if request:
+    if id:
+        id = int(id)
+        job = getJobs(id)
         return render_template('jobList_individual.html',
                                job=getJobs(id))
-    return "OK"
+    return render_template('jobList_individual.html'
+                            )
+
 
 @app.route('/setJobPosting', methods=['GET', 'POST'])
 def setJobPosting():
@@ -250,5 +254,5 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000
-            )
+   app.run(debug=True)
+

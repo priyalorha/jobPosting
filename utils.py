@@ -34,9 +34,9 @@ def editProfile(id: str, **kwargs: dict):
     user = Users().objects(id=id).update(**kwargs)
 
 
-def getJobs(id: str = ''):
+def getJobs(id: int = 0):
     job = []
-    if id:
+    if id and id != 0:
         job = jobPosting.objects(id=int(id))
         if job:
             job = job[0]

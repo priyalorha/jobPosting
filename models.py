@@ -34,7 +34,7 @@ class Users(Document):
 
 
 class jobPosting(Document):
-    id = IntField(primary_key=True, min_value=1)
+    id = IntField()
     title = StringField()
     description = StringField()
     location = PointField()
