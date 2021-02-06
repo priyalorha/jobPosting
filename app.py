@@ -73,7 +73,7 @@ def upload_file():
             file.save(file.filename)
             res = upload_cv(file.filename)
             os.remove(file.filename)
-            appendApplicants_jobPosting(applicant_email=session['email'], id=jobid)
+            appendApplicants_jobPosting(applicant_email=session['email'], sequence=jobid)
 
     return dashboard()
 
